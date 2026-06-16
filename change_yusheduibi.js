@@ -80,7 +80,7 @@ function pcaApplyTheme(e, t) {
     }
   }
   var i = a.colors;
-  if (pcaC.bg = i.bg, pcaC.surface = i.surface, pcaC.surfaceHi = i.surfaceHi, pcaC.border = i.border, pcaC.borderHi = i.borderHi, pcaC.primary = i.primary, pcaC.primaryDim = i.primaryDim, pcaC.accent = i.accent, pcaC.accentDim = i.accentDim, pcaC.text = i.text, pcaC.textDim = i.textDim, pcaC.textOff = i.textOff, pcaC.danger = i.danger, pcaC.warning = i.warning, pcaC.success = i.success, pcaC.info = i.info, pcaC.infoDim = i.infoDim, pcaC.input = i.input, pcaC.card = i.surface, pcaC.card2 = i.surfaceHi, pcaC.pink = i.primary, pcaC.pinkDim = i.primaryDim, pcaC.gold = i.accent, pcaC.goldDim = i.accentDim, pcaC.dim = i.textDim, pcaC.off = i.textOff, pcaC.migrate = i.info, pcaC.migrateDim = i.infoDim, pcaC.migrateBg = "rgba(" + pcaHexToRgb(i.info) + ",0.1)", pcaC.migrateBorder = "rgba(" + pcaHexToRgb(i.info) + ",0.3)", pcaC.diffAdd = "rgba(" + pcaHexToRgb(i.success) + ",0.15)", pcaC.diffAddBorder = "rgba(" + pcaHexToRgb(i.success) + ",0.4)", pcaC.diffDel = "rgba(" + pcaHexToRgb(i.danger) + ",0.15)", pcaC.diffDelBorder = "rgba(" + pcaHexToRgb(i.danger) + ",0.4)", pcaC.info = i.success, pcaC.diffDelText = i.danger, pcaC._fontSans = a.fonts && a.fonts.sans || "'Segoe UI',sans-serif", pcaC._fontMono = a.fonts && a.fonts.mono || "Consolas,monospace", pcaC.sheen = a.sheen || i.primary, pcaC._themeName = e, pcaC._themeLabel = a.name, !t.skipPersist) try {
+  if (pcaC.bg = i.bg, pcaC.surface = i.surface, pcaC.surfaceHi = i.surfaceHi, pcaC.border = i.border, pcaC.borderHi = i.borderHi, pcaC.primary = i.primary, pcaC.primaryDim = i.primaryDim, pcaC.accent = i.accent, pcaC.accentDim = i.accentDim, pcaC.text = i.text, pcaC.textDim = i.textDim, pcaC.textOff = i.textOff, pcaC.danger = i.danger, pcaC.warning = i.warning, pcaC.success = i.success, pcaC.info = i.info, pcaC.infoDim = i.infoDim, pcaC.input = i.input, pcaC.card = i.surface, pcaC.card2 = i.surfaceHi, pcaC.pink = i.primary, pcaC.pinkDim = i.primaryDim, pcaC.gold = i.accent, pcaC.goldDim = i.accentDim, pcaC.dim = i.textDim, pcaC.off = i.textOff, pcaC.migrate = i.info, pcaC.migrateDim = i.infoDim, pcaC.migrateBg = "rgba(" + pcaHexToRgb(i.info) + ",0.1)", pcaC.migrateBorder = "rgba(" + pcaHexToRgb(i.info) + ",0.3)", pcaC.diffAdd = "rgba(" + pcaHexToRgb(i.info) + ",0.15)", pcaC.diffAddBorder = "rgba(" + pcaHexToRgb(i.info) + ",0.4)", pcaC.diffDel = "rgba(" + pcaHexToRgb(i.danger) + ",0.15)", pcaC.diffDelBorder = "rgba(" + pcaHexToRgb(i.danger) + ",0.4)", pcaC.info = i.info, pcaC.diffDelText = i.danger, pcaC._fontSans = a.fonts && a.fonts.sans || "'Segoe UI',sans-serif", pcaC._fontMono = a.fonts && a.fonts.mono || "Consolas,monospace", pcaC.sheen = a.sheen || i.primary, pcaC._themeName = e, pcaC._themeLabel = a.name, !t.skipPersist) try {
     localStorage.setItem("pca_theme", e)
   } catch (e) {}
   if ("function" == typeof pcaInjectCSS && pcaInjectCSS(), !1 !== t.rerender && void 0 !== pcaState && pcaState && pcaState.compared) try {
@@ -1129,7 +1129,7 @@ function pcaRenderContentDiff() {
   var out = "";
   out += "<div style='display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:0 4px;gap:8px;'>";
   out += "<span style='font-size:13px;font-weight:600;color:" + pcaC.text + ";white-space:nowrap;'>内容对比 (" + names.length + " 条目)</span>";
-  out += "<input id='pca-search-content' type='text' value='" + pcaEsc(pcaState.contentSearch || "") + "' placeholder='搜索条目名称' style='flex:1;max-width:200px;font-size:11px;background:" + pcaC.input + ";color:" + pcaC.text + ";border:1px solid " + pcaC.border + ";border-radius:4px;padding:4px 8px;outline:none;' onkeydown='if(event.key===\"Enter\"){pcaState.contentSearch=this.value;pcaRenderContentDiff()}'>";
+  out += "<input id='pca-search-content' type='text' value='" + pcaEsc(pcaState.contentSearch || "") + "' placeholder='搜索条目名称' style='flex:1;max-width:200px;font-size:11px;background:" + pcaC.input + ";color:" + pcaC.text + ";border:1px solid " + pcaC.border + ";border-radius:4px;padding:4px 8px;outline:none;' onkeydown='if(event.key===\"Enter\"){pcaState.contentSearch=this.value;pcaRenderContentDiff()}' oninput='pcaState.contentSearch=this.value;clearTimeout(this._pcaSt);var t=this;this._pcaSt=setTimeout(function(){pcaRenderContentDiff()},300)'>";
   out += "<span data-pca-action='content-only-diff' style='font-size:12px;color:" + (onlyDiff ? pcaC.accent : pcaC.textDim) + ";cursor:pointer;padding:5px 12px;border:1px solid " + (onlyDiff ? pcaC.accent : pcaC.border) + ";border-radius:4px;display:inline-block;transition:all .2s;" + (onlyDiff ? "background:" + pcaC.accentDim + "; " : "") + "'>" + (onlyDiff ? "✓ 仅显示差异" : "仅显示差异") + "</span>";
   out += "</div>";
   var rowIdx = 0;
@@ -1153,8 +1153,8 @@ function pcaRenderContentDiff() {
     out += "<span style='font-size:14px;font-weight:600;color:" + pcaC.text + ";overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex-shrink:1;'>" + pcaEsc(name) + "</span>";
     out += "<div style='display:flex;gap:6px;flex-shrink:0;align-items:center;'>";
     out += "<span data-pca-action='content-restore-row' data-pca-name='" + pcaAttr(name) + "' data-pca-side='left' style='font-size:11px;color:" + pcaC.dim + ";cursor:pointer;padding:3px 8px;border:1px solid " + pcaC.border + ";border-radius:4px;display:inline-block;' title='恢复左侧到原始状态'>↺ 左恢复</span>";
-    out += "<span style='font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;color:" + (lE ? pcaC.success : pcaC.danger) + ";'>左" + "(lE?ON:OFF)" + "</span>";
-    out += "<span style='font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;color:" + (rE ? pcaC.success : pcaC.danger) + ";'>右" + "(rE?ON:OFF)" + "</span>";
+    out += "<span style='font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;color:" + (lE ? pcaC.success : pcaC.danger) + ";'>左" + (lE ? "ON" : "OFF") + "</span>";
+    out += "<span style='font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;color:" + (rE ? pcaC.success : pcaC.danger) + ";'>右" + (rE ? "ON" : "OFF") + "</span>";
     out += "<span data-pca-action='content-restore-row' data-pca-name='" + pcaAttr(name) + "' data-pca-side='right' style='font-size:11px;color:" + pcaC.dim + ";cursor:pointer;padding:3px 8px;border:1px solid " + pcaC.border + ";border-radius:4px;display:inline-block;' title='恢复右侧到原始状态'>↺ 右恢复</span>";
     out += "</div></div>";
     var isEditing = editState[name],
@@ -3484,7 +3484,7 @@ function pcaBindPanel() {
             }
             break;
             case "content-edit-row":
-              if (c >= 0) {
+              {
                 var nm8 = r.getAttribute("data-pca-name") || "";
                 var cur8 = pcaState.contentEditState && pcaState.contentEditState[nm8];
                 if (cur8) {
@@ -3499,61 +3499,8 @@ function pcaBindPanel() {
                 }
               }
               break;
-            case "content-save-row":
-              if (c >= 0) {
-                var nm7 = r.getAttribute("data-pca-name") || "";
-                var row7 = r.getAttribute("data-pca-rowidx") || c;
-                var doc7 = pcaGetDoc();
-                var dl7 = doc7.querySelector("#pca-cdl-" + row7);
-                var dr7 = doc7.querySelector("#pca-cdr-" + row7);
-                var sd7 = pcaState.contentEditState && pcaState.contentEditState[nm7];
-                if ("left" === sd7 && dl7) {
-                  var tx7 = dl7.textContent || "";
-                  for (var k7 = 0; k7 < pcaState.leftEntries.length; k7++)
-                    if (pcaState.leftEntries[k7] && pcaState.leftEntries[k7].name === nm7) {
-                      pcaState.leftEntries[k7].content = tx7;
-                      break
-                    }
-                } else if ("right" === sd7 && dr7) {
-                  var tx7 = dr7.textContent || "";
-                  for (var k7 = 0; k7 < pcaState.rightEntries.length; k7++)
-                    if (pcaState.rightEntries[k7] && pcaState.rightEntries[k7].name === nm7) {
-                      pcaState.rightEntries[k7].content = tx7;
-                      break
-                    }
-                }
-                pcaState.contentEditState && delete pcaState.contentEditState[nm7];
-                pcaState.contentEditDraft && (delete pcaState.contentEditDraft[nm7 + "_left"], delete pcaState.contentEditDraft[nm7 + "_right"]);
-                pcaRenderContentDiff()
-              }
-              break;
-            case "content-restore-row":
-              if (c >= 0) {
-                var nmR = r.getAttribute("data-pca-name") || "";
-                var sdR = r.getAttribute("data-pca-side") || "";
-                var ogR = pcaState.contentOriginalContent && pcaState.contentOriginalContent[nmR];
-                if (ogR) {
-                  if ("left" === sdR) {
-                    for (var kR = 0; kR < pcaState.leftEntries.length; kR++)
-                      if (pcaState.leftEntries[kR] && pcaState.leftEntries[kR].name === nmR) {
-                        pcaState.leftEntries[kR].content = ogR.left || "";
-                        pcaState.leftEntries[kR].enabled = ogR.leftE;
-                        break
-                      }
-                  } else if ("right" === sdR) {
-                    for (var kR = 0; kR < pcaState.rightEntries.length; kR++)
-                      if (pcaState.rightEntries[kR] && pcaState.rightEntries[kR].name === nmR) {
-                        pcaState.rightEntries[kR].content = ogR.right || "";
-                        pcaState.rightEntries[kR].enabled = ogR.rightE;
-                        break
-                      }
-                  }
-                  pcaState.contentEditState && delete pcaState.contentEditState[nmR];
-                  pcaState.contentEditDraft && (delete pcaState.contentEditDraft[nmR + "_left"], delete pcaState.contentEditDraft[nmR + "_right"]);
-                  pcaRenderContentDiff()
-                }
-              }
-              break;
+
+
             case "content-save-row": {
               var nm7 = r.getAttribute("data-pca-name") || "";
               var row7 = r.getAttribute("data-pca-rowidx") || "1";
@@ -3790,9 +3737,6 @@ function pcaBindPanel() {
               pcaState.contentOnlyDiff = !pcaState.contentOnlyDiff;
               pcaRenderContentDiff();
               break;
-            case "content-only-diff":
-              pcaState.contentOnlyDiff = !pcaState.contentOnlyDiff;
-              pcaRenderContentDiff();
             case "view":
               if (c >= 0 && pcaState.diffs[c]) {
                 var w = e.querySelector("#pca-pv-" + c);
